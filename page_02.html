@@ -1,0 +1,452 @@
+<!-- PAGE: 주요 타겟 고객층 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주요 타겟 고객층</title>
+  <meta name="description" content="타겟 고객층 정보">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ==========================================
+       와이어프레임 CSS 변수
+       ========================================== */
+    :root {
+      --text-black: #1A1A1A;
+      --text-dark: #333333;
+      --text-gray: #666666;
+      --text-light: #999999;
+      --text-muted: #BCBCBC;
+      --bg-white: #FFFFFF;
+      --bg-light: #F5F5F5;
+      --bg-dark: #2D2D2D;
+      --bg-black: #1A1A1A;
+      --border-light: #E0E0E0;
+      --border-default: #D0D0D0;
+      --placeholder-bg: #E0E0E0;
+      --placeholder-icon: #BCBCBC;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* ==========================================
+       리셋 & 기본
+       ========================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard', sans-serif;
+      color: var(--text-gray);
+      line-height: 1.6;
+      background: var(--bg-white);
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; font-family: inherit; background: none; }
+
+    /* ==========================================
+       레이아웃
+       ========================================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================
+       NAV
+       ========================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-dark);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-black);
+      font-weight: 600;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* ==========================================
+       버튼
+       ========================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary {
+      background: var(--text-black);
+      color: #FFFFFF;
+      border: 1px solid var(--text-black);
+    }
+    .btn-secondary {
+      background: var(--bg-white);
+      color: var(--text-black);
+      border: 1px solid var(--border-default);
+    }
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    /* ==========================================
+       공통 텍스트
+       ========================================== */
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-black);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-gray);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    /* ==========================================
+       이미지 플레이스홀더
+       ========================================== */
+    .img-placeholder {
+      background: var(--placeholder-bg);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .img-placeholder svg {
+      color: var(--placeholder-icon);
+      width: 48px;
+      height: 48px;
+    }
+
+    /* ==========================================
+       아이콘 박스
+       ========================================== */
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-box svg {
+      width: 24px;
+      height: 24px;
+      color: var(--text-dark);
+    }
+
+    /* ==========================================
+       섹션 - 정보 부재 안내
+       ========================================== */
+    .info-notice {
+      padding: 120px 0;
+      background: var(--bg-white);
+    }
+    .notice-box {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 48px;
+      background: var(--bg-light);
+      border: 2px dashed var(--border-default);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+    .notice-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--bg-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .notice-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--text-light);
+    }
+    .notice-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+    }
+    .notice-desc {
+      font-size: 16px;
+      color: var(--text-gray);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .notice-list {
+      text-align: left;
+      max-width: 600px;
+      margin: 32px auto 0;
+      padding: 24px;
+      background: var(--bg-white);
+      border-radius: var(--radius-sm);
+    }
+    .notice-list-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .notice-list-title svg {
+      width: 20px;
+      height: 20px;
+    }
+    .notice-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .notice-list li {
+      font-size: 14px;
+      color: var(--text-dark);
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+    .notice-list li::before {
+      content: "☐";
+      position: absolute;
+      left: 0;
+      color: var(--text-light);
+      font-size: 16px;
+    }
+
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    .footer-light {
+      padding: 60px 0 32px;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border-light);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .footer-brand-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+    .footer-brand-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .footer-col-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--text-light);
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--text-dark);
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================
+       반응형
+       ========================================== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .section-title { font-size: 28px; }
+      .notice-title { font-size: 24px; }
+      .notice-box { padding: 40px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       HEADER
+       ========================================== -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">브랜드명</a>
+        <nav class="nav-links">
+          <a href="page_01.html">사업 내용 및 제공 서비스/제품</a>
+          <a href="page_02.html" class="active">주요 타겟 고객층</a>
+          <a href="page_03.html">웹사이트 목적</a>
+          <a href="page_04.html">필요한 주요 메뉴 및 기능</a>
+          <a href="page_05.html">Slack 메모 텍스트 내용</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="page_01.html" class="btn btn-primary btn-sm">문의하기</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main>
+
+    <!-- 정보 부재 안내 섹션 -->
+    <section class="info-notice">
+      <div class="container">
+        <div class="notice-box">
+          <div class="notice-icon">
+            <i data-lucide="alert-circle"></i>
+          </div>
+          <h1 class="notice-title">기획 진행 불가 — 필수 정보 부재</h1>
+          <p class="notice-desc">
+            주요 타겟 고객층 페이지를 생성하기 위해서는 구체적인 고객 정보가 필요합니다.<br>
+            현재 제공된 자료에는 타겟 고객에 대한 정보가 포함되어 있지 않습니다.
+          </p>
+
+          <div class="notice-list">
+            <p class="notice-list-title">
+              <i data-lucide="check-square"></i>
+              필수 정보 목록
+            </p>
+            <ul>
+              <li>주요 타겟 고객층 (연령대, 직업, 관심사 등)</li>
+              <li>1차 타겟과 2차 타겟 구분</li>
+              <li>고객의 주요 니즈 및 고민</li>
+              <li>고객이 선호하는 커뮤니케이션 방식</li>
+              <li>타겟 고객의 구매 결정 요인</li>
+            </ul>
+          </div>
+
+          <div class="notice-list" style="margin-top: 16px;">
+            <p class="notice-list-title">
+              <i data-lucide="check-square"></i>
+              권장 정보
+            </p>
+            <ul>
+              <li>기존 고객 인터뷰 또는 후기</li>
+              <li>고객 페르소나 자료</li>
+              <li>타겟 고객의 온라인 행동 패턴</li>
+              <li>경쟁사의 주요 고객층</li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 32px;">
+            <a href="index.html" class="btn btn-primary">홈으로 돌아가기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer-light">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand-name">브랜드명</p>
+          <p class="footer-brand-desc">기획 진행을 위해 필수 정보를 제공해 주세요.</p>
+        </div>
+        <div>
+          <p class="footer-col-title">메뉴</p>
+          <a href="page_01.html">사업 내용 및 제공 서비스/제품</a>
+          <a href="page_02.html">주요 타겟 고객층</a>
+          <a href="page_03.html">웹사이트 목적</a>
+        </div>
+        <div>
+          <p class="footer-col-title">정보</p>
+          <a href="page_04.html">필요한 주요 메뉴 및 기능</a>
+          <a href="page_05.html">Slack 메모 텍스트 내용</a>
+        </div>
+        <div>
+          <p class="footer-col-title">문의</p>
+          <a href="#">정보 제공 필요</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 브랜드명. All rights reserved.</span>
+        <span>이용약관 | 개인정보처리방침</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

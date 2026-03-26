@@ -1,0 +1,496 @@
+<!-- PAGE: 필요한 주요 메뉴 및 기능 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>필요한 주요 메뉴 및 기능</title>
+  <meta name="description" content="웹사이트 구축을 위해 필요한 주요 메뉴 구조와 기능에 대한 안내">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --text-black: #1A1A1A;
+      --text-dark: #333333;
+      --text-gray: #666666;
+      --text-light: #999999;
+      --text-muted: #BCBCBC;
+      --bg-white: #FFFFFF;
+      --bg-light: #F5F5F5;
+      --bg-dark: #2D2D2D;
+      --bg-black: #1A1A1A;
+      --border-light: #E0E0E0;
+      --border-default: #D0D0D0;
+      --placeholder-bg: #E0E0E0;
+      --placeholder-icon: #BCBCBC;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard', sans-serif;
+      color: var(--text-gray);
+      line-height: 1.6;
+      background: var(--bg-white);
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; font-family: inherit; background: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary {
+      background: var(--text-black);
+      color: #FFFFFF;
+      border: 1px solid var(--text-black);
+    }
+    .btn-secondary {
+      background: var(--bg-white);
+      color: var(--text-black);
+      border: 1px solid var(--border-default);
+    }
+
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-black);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-gray);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    .img-placeholder {
+      background: var(--placeholder-bg);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .img-placeholder svg {
+      color: var(--placeholder-icon);
+      width: 48px;
+      height: 48px;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-box svg {
+      width: 24px;
+      height: 24px;
+      color: var(--text-dark);
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-dark);
+      position: relative;
+    }
+    .nav-links a.active {
+      color: var(--text-black);
+      font-weight: 600;
+    }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -24px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--text-black);
+    }
+
+    /* HERO */
+    .hero-center {
+      padding: 120px 0 80px;
+      background: var(--bg-white);
+      text-align: center;
+    }
+    .hero-center .section-title {
+      font-size: 42px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* INFO SECTION */
+    .info-section {
+      padding: 80px 0;
+      background: var(--bg-light);
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .info-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 32px;
+    }
+    .info-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .info-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+    }
+    .info-card-desc {
+      font-size: 15px;
+      color: var(--text-gray);
+      line-height: 1.7;
+    }
+
+    /* NOTICE SECTION */
+    .notice-section {
+      padding: 80px 0;
+      background: var(--bg-dark);
+    }
+    .notice-section .section-title {
+      color: #FFFFFF;
+    }
+    .notice-section .section-desc {
+      color: rgba(255,255,255,0.6);
+    }
+    .notice-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      margin-top: 48px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .notice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .notice-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .notice-item .icon-box {
+      background: rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
+    .notice-item .icon-box svg {
+      color: #FFFFFF;
+    }
+    .notice-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 80px 0;
+      background: var(--bg-white);
+      text-align: center;
+    }
+    .cta-section .section-title {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 60px 0 32px;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border-light);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .footer-brand-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+    .footer-brand-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .footer-col-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--text-light);
+      padding: 4px 0;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .section-title { font-size: 28px; }
+      .hero-center .section-title { font-size: 32px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">브랜드명</a>
+        <nav class="nav-links">
+          <a href="page_01.html">사업 내용 및 제공 서비스/제품</a>
+          <a href="page_02.html">주요 타겟 고객층</a>
+          <a href="page_03.html">웹사이트 목적</a>
+          <a href="page_04.html" class="active">필요한 주요 메뉴 및 기능</a>
+          <a href="page_05.html">Slack 메모</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-center">
+      <div class="container">
+        <p class="section-label">웹사이트 구조</p>
+        <h1 class="section-title">필요한 주요 메뉴 및 기능</h1>
+        <p class="section-desc mx-auto">효과적인 웹사이트를 위해 필요한 핵심 메뉴 구성과 기능을 안내드립니다.</p>
+      </div>
+    </section>
+
+    <!-- INFO SECTION -->
+    <section class="info-section">
+      <div class="container">
+        <div class="text-center">
+          <p class="section-label">주요 구성요소</p>
+          <h2 class="section-title">기본 메뉴 구조</h2>
+          <p class="section-desc mx-auto">웹사이트의 핵심이 되는 필수 메뉴와 페이지 구성입니다.</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="icon-box">
+                <i data-lucide="home"></i>
+              </div>
+              <h3 class="info-card-title">홈페이지</h3>
+            </div>
+            <p class="info-card-desc">브랜드 소개와 핵심 가치를 전달하는 메인 페이지입니다. 첫인상을 결정하는 가장 중요한 페이지로, 명확한 헤드라인과 주요 서비스 요약이 포함됩니다.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="icon-box">
+                <i data-lucide="info"></i>
+              </div>
+              <h3 class="info-card-title">회사 소개</h3>
+            </div>
+            <p class="info-card-desc">브랜드 스토리, 비전, 미션 등을 소개하는 페이지입니다. 신뢰를 구축하고 브랜드 정체성을 전달합니다.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="icon-box">
+                <i data-lucide="package"></i>
+              </div>
+              <h3 class="info-card-title">서비스/제품 안내</h3>
+            </div>
+            <p class="info-card-desc">제공하는 서비스나 제품의 상세 정보를 담는 핵심 페이지입니다. 카테고리별 분류, 상세 설명, 가격 정보 등이 포함됩니다.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="icon-box">
+                <i data-lucide="mail"></i>
+              </div>
+              <h3 class="info-card-title">문의/연락처</h3>
+            </div>
+            <p class="info-card-desc">고객이 쉽게 문의할 수 있는 페이지입니다. 문의 폼, 연락처 정보, 위치 안내 등이 포함됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTICE SECTION -->
+    <section class="notice-section">
+      <div class="container">
+        <div class="text-center">
+          <p class="section-label" style="color:rgba(255,255,255,0.5);">추가 정보 필요</p>
+          <h2 class="section-title">구체적인 메뉴 구성을 위해<br>다음 정보가 필요합니다</h2>
+          <p class="section-desc mx-auto">보다 정확한 메뉴 설계를 위해 아래 정보를 제공해 주시면 맞춤형 구조를 제안드립니다.</p>
+        </div>
+        <div class="notice-box">
+          <div class="notice-list">
+            <div class="notice-item">
+              <div class="icon-box">
+                <i data-lucide="check-circle"></i>
+              </div>
+              <p class="notice-text"><strong>업종 및 서비스:</strong> 제공하는 구체적인 서비스나 제품의 종류와 카테고리</p>
+            </div>
+            <div class="notice-item">
+              <div class="icon-box">
+                <i data-lucide="check-circle"></i>
+              </div>
+              <p class="notice-text"><strong>타겟 고객:</strong> 주요 고객층의 니즈와 웹사이트 이용 패턴</p>
+            </div>
+            <div class="notice-item">
+              <div class="icon-box">
+                <i data-lucide="check-circle"></i>
+              </div>
+              <p class="notice-text"><strong>필수 기능:</strong> 온라인 예약, 결제, 회원 가입 등 필요한 기능</p>
+            </div>
+            <div class="notice-item">
+              <div class="icon-box">
+                <i data-lucide="check-circle"></i>
+              </div>
+              <p class="notice-text"><strong>콘텐츠 자산:</strong> 포트폴리오, 고객 후기, 블로그 등 게시할 콘텐츠 유형</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="section-title">프로젝트에 대해<br>더 자세히 알려주세요</h2>
+        <p class="section-desc mx-auto">구체적인 정보를 제공하시면 맞춤형 웹사이트 구조와 기능을 제안해 드립니다.</p>
+        <div class="cta-buttons">
+          <a href="page_01.html" class="btn btn-primary">사업 내용 확인하기</a>
+          <a href="page_03.html" class="btn btn-secondary">웹사이트 목적 확인하기</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand-name">브랜드명</p>
+          <p class="footer-brand-desc">웹사이트 구축을 위한 정보 안내</p>
+        </div>
+        <div>
+          <p class="footer-col-title">메뉴</p>
+          <a href="page_01.html">사업 내용</a>
+          <a href="page_02.html">타겟 고객</a>
+          <a href="page_03.html">웹사이트 목적</a>
+        </div>
+        <div>
+          <p class="footer-col-title">정보</p>
+          <a href="page_04.html">주요 메뉴 및 기능</a>
+          <a href="page_05.html">Slack 메모</a>
+        </div>
+        <div>
+          <p class="footer-col-title">지원</p>
+          <a href="page_01.html">문의하기</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 브랜드명. All rights reserved.</span>
+        <span>이용약관 | 개인정보처리방침</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

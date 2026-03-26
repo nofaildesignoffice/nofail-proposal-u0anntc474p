@@ -1,0 +1,328 @@
+<!-- PAGE: 사업 내용 및 제공 서비스/제품 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사업 내용 및 제공 서비스/제품</title>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --text-black: #1A1A1A;
+      --text-dark: #333333;
+      --text-gray: #666666;
+      --text-light: #999999;
+      --text-muted: #BCBCBC;
+      --bg-white: #FFFFFF;
+      --bg-light: #F5F5F5;
+      --bg-dark: #2D2D2D;
+      --bg-black: #1A1A1A;
+      --border-light: #E0E0E0;
+      --border-default: #D0D0D0;
+      --placeholder-bg: #E0E0E0;
+      --placeholder-icon: #BCBCBC;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard', sans-serif;
+      color: var(--text-gray);
+      line-height: 1.6;
+      background: var(--bg-white);
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; font-family: inherit; background: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-dark);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-black);
+      font-weight: 600;
+    }
+
+    /* Alert Box */
+    .alert-box {
+      background: #FFF3CD;
+      border: 2px solid #FFC107;
+      border-radius: var(--radius-md);
+      padding: 40px;
+      margin: 80px 0;
+      text-align: center;
+    }
+    .alert-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      color: #FF6B6B;
+    }
+    .alert-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+    }
+    .alert-text {
+      font-size: 16px;
+      color: var(--text-dark);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    .info-list {
+      background: var(--bg-white);
+      border-radius: var(--radius-sm);
+      padding: 32px;
+      text-align: left;
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+    .info-section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    .info-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-light);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 24px 0;
+    }
+
+    /* Footer */
+    .footer-light {
+      padding: 60px 0 32px;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border-light);
+      margin-top: 120px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .footer-brand-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+    .footer-brand-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .footer-col-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--text-light);
+      padding: 4px 0;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .alert-title { font-size: 22px; }
+      .alert-text { font-size: 15px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">브랜드명</a>
+        <nav class="nav-links">
+          <a href="page_01.html" class="active">사업 내용 및 제공 서비스/제품</a>
+          <a href="page_02.html">주요 타겟 고객층</a>
+          <a href="page_03.html">웹사이트 목적</a>
+          <a href="page_04.html">필요한 주요 메뉴 및 기능</a>
+          <a href="page_05.html">Slack 메모</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section>
+      <div class="container">
+        <div class="alert-box">
+          <svg class="alert-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <h1 class="alert-title">⛔ 기획 진행 불가 — 필수 정보 부재</h1>
+          <p class="alert-text">
+            현재 제공된 자료에는 홈페이지 기획에 필수적인 정보가 포함되어 있지 않습니다.<br>
+            아래 정보가 최소 1개 이상 확보되어야 기획안 생성이 가능합니다.
+          </p>
+
+          <div class="info-list">
+            <div class="info-section-title">
+              <i data-lucide="alert-circle"></i>
+              필수 — 이것 없이는 진행 불가
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>회사명</span>
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>구체적 업종 (예: 법률사무소, 식품 D2C, 인테리어 등)</span>
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>제공하는 서비스 또는 제품</span>
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>확정 사이트맵 (메뉴 구조)</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="info-section-title">
+              <i data-lucide="star"></i>
+              권장 — 있으면 기획 품질 대폭 향상
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>고객 인터뷰 스크립트 또는 Slack 메모 텍스트</span>
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>회사소개서, 카탈로그, 기존 홈페이지 URL</span>
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>타겟 고객층</span>
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>홈페이지의 주요 목적 (브랜딩/리드수집/판매 등)</span>
+            </div>
+            <div class="info-item">
+              <i data-lucide="square"></i>
+              <span>선호하는 문의 채널 (전화/카카오/폼 등)</span>
+            </div>
+          </div>
+
+          <p class="alert-text" style="margin-bottom:0; font-weight:600;">
+            위 정보를 제공해 주시면 즉시 전체 기획안을 생성합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-light">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand-name">브랜드명</p>
+          <p class="footer-brand-desc">홈페이지 기획을 위한 정보가 필요합니다</p>
+        </div>
+        <div>
+          <p class="footer-col-title">메뉴</p>
+          <a href="page_01.html">사업 내용</a>
+          <a href="page_02.html">타겟 고객</a>
+          <a href="page_03.html">웹사이트 목적</a>
+        </div>
+        <div>
+          <p class="footer-col-title">안내</p>
+          <a href="page_04.html">메뉴 및 기능</a>
+          <a href="page_05.html">Slack 메모</a>
+        </div>
+        <div>
+          <p class="footer-col-title">고객 지원</p>
+          <a href="#">정보 제공 필요</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 브랜드명. All rights reserved.</span>
+        <span>이용약관 | 개인정보처리방침</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
